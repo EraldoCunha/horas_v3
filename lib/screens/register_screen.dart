@@ -55,20 +55,32 @@ class RegisterScreen extends StatelessWidget {
                       decoration: InputDecoration(hintText: 'Confirmar Senha'),
                     ),
                     SizedBox(height: 16),
-                    ElevatedButton(
-                      onPressed: () {
-                        if (_senhaController.text ==
-                            _confirmarSenhaController.text) {
-                          authService.cadastrarUsuario(
-                            email: _emailController.text,
-                            senha: _senhaController.text,
-                            nome: _nomeController.text,
-                          );
-                        }
-                      },
-                      child: Text('Cadastrar'),
+                    ElevatedButton( onPressed: () {
+                      if (_senhaController.text ==
+                          _confirmarSenhaController.text) {
+                        authService.cadastrarUsuario(
+                          email: _emailController.text,
+                          senha: _senhaController.text,
+                          nome: _nomeController.text,
+                        ).then((String? erro) {
+                          if (erro != null) {
+                            final snackBar = SnackBar(content: Text(erro),
+                                backgroundColor: Colors.red);
+                            ScaffoldMessenger.of(context).showSnackBar(
+                                snackBar);
+                          } else {
+                            Navigator.pop(context);
+                          }
+                        });
+                      } else {
+                        const snackBar = SnackBar(
+                            content: Text('As senhas não correspondem'), backgroundColor: Colors.red);
+                            ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                      }
+                    },
+                      child: const Text('Cadastrar'),
                     ),
-                    SizedBox(height: 16),
+                    const SizedBox(height: 16),
                   ],
                 ),
               ),
