@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:horas_v3/screens/register_screen.dart';
 
 class LoginScreen extends StatelessWidget {
   LoginScreen({super.key});
 
   final _emailController = TextEditingController();
   final _senhaController = TextEditingController();
-
 
   @override
   Widget build(BuildContext context) {
@@ -34,17 +34,27 @@ class LoginScreen extends StatelessWidget {
                   TextField(
                     obscureText: true,
                     controller: _senhaController,
-                    decoration: InputDecoration(
-                      hintText: 'Senha',
-                    ),
+                    decoration: InputDecoration(hintText: 'Senha'),
                   ),
                   SizedBox(height: 16),
-                  ElevatedButton(onPressed: () {}, child: Text('Entrar'),),
+                  ElevatedButton(onPressed: () {}, child: Text('Entrar')),
                   SizedBox(height: 16),
                   ElevatedButton(
-                    onPressed: () {}, child: Text('Entrar com Google'),),
+                    onPressed: () {},
+                    child: Text('Entrar com Google'),
+                  ),
                   SizedBox(height: 16),
-                  TextButton(onPressed: (){}, child: Text('Ainda não tem uma conta, crie uma conta'))
+                  TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => RegisterScreen(),
+                        ),
+                      );
+                    },
+                    child: Text('Ainda não tem uma conta, crie uma conta'),
+                  ),
                 ],
               ),
             ),
