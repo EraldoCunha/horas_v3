@@ -13,6 +13,6 @@ class Hour {
     descricao = map['descricao'];
 
   Map<String, dynamic> toMap() {
-    return {'id': id, 'data': data, 'minutos': minutos};
+    return {'id': id, 'data': data, 'minutos': minutos, 'descricao': descricao};
   }
 }
